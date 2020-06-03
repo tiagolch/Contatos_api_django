@@ -1,12 +1,6 @@
 from contatos.models import *
 from rest_framework import serializers
 
-class contatoSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = contato
-        fields = ['id', 'nome', 'sobre_nome', 'ramal', 'celular', 'email']
-
-
 class empresaSerializer(serializers.ModelSerializer):
     class Meta:
         model = empresa
@@ -19,3 +13,10 @@ class setorSerializer(serializers.ModelSerializer):
         fields = ['id', 'nome_setor']
 
 
+class contatoSerializer(serializers.ModelSerializer):
+    nome_empresa = serializers.CharField(source='empresa.nome_empresa')  ## necessario porque é um campo Foreign Key
+    nome_setor = serializers.CharField(source='setor.nome_setor')        ## necessario porque é um campo Foreign Key
+
+    class Meta:
+        model = contato
+        fields = '__all__'
