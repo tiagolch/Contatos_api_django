@@ -1,8 +1,9 @@
-from django.urls import path
-from contatos.views import *
+from contatos.views import contatoViewSet
+from rest_framework.routers import DefaultRouter
+
+router = DefaultRouter()
+router.register(r'', contatoViewSet)
+urlpatterns = router.urls
 
 
-urlpatterns = [
-    path('',  contatoListCreate.as_view()),
-    path('<int:pk>/', contato_busca_altera_deleta.as_view())
-]
+
