@@ -3,6 +3,6 @@ from contatos.views import *
 
 
 urlpatterns = [
-    path('', contato_list),
-    path('<int:pk>/', contato_busca_altera_deleta)
+    path('',  contatoListCreate.as_view()),
+    path('<int:pk>/', contato_busca_altera_deleta.as_view())
 ]
